@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   # rubocop:enable Date
   s.authors     = ['Timo Goebel']
   s.email       = ['mail@timogoebel.name']
-  s.homepage    = 'http://github.com/theforeman/foreman_vmwareannotations'
+  s.homepage    = 'https://github.com/theforeman/foreman_vmwareannotations'
   s.licenses    = ['GPL-3']
   s.summary     = 'This plug-in copies the host comment to VMWare annotations in The Foreman.'
   s.description = 'This plug-in copies the host comment to VMWare annotations in The Foreman.'
