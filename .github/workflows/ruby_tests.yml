@@ -1,0 +1,32 @@
+name: Ruby tests
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  rubocop:
+    name: Rubocop
+    uses: theforeman/actions/.github/workflows/rubocop.yml@v0
+    with:
+      command: bundle exec rubocop --parallel --format github
+
+  test:
+    name: Ruby
+    needs: rubocop
+    strategy:
+      fail-fast: false
+      matrix:
+        foreman:
+          - develop
+    uses: theforeman/actions/.github/workflows/foreman_plugin.yml@v0
+    with:
+      plugin: foreman_rh_cloud
+      test_existing_database: false
+      foreman_version: ${{ matrix.foreman }}
